@@ -144,7 +144,7 @@ strong {
 
 .section-overlay {
   content: "";
-  background: rgba(0, 0, 0, 0) linear-gradient(rgba(39, 48, 83, 0.01) 0%, rgb(39, 48, 83) 100%) repeat scroll 0% 0%;
+  background: rgba(0, 0, 0, 0) linear-gradient(rgba(39, 48, 83, 0.01) 0%, rgb(39, 48, 83) 100%) repeat scroll 0% 0%;/*titlebackground*/
   position: absolute;
   top: 0;
   right: 0;
@@ -642,7 +642,7 @@ strong {
   HERO        
 -----------------------------------------*/
 .hero-section {
-  background-image: url('../images/WhatsApp Image 2026-03-20 at 1.08.28 AM.jpeg');
+  background-image: url('../images/EarPhone.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -694,28 +694,19 @@ strong {
   BACKGROUND IMAGE SECTION        
 -----------------------------------------*/
 .section-bg-image {
-  background-image: url('../images/a3c153_7de4e8c9cde646e9948c3fe36a44dfe3~mv2.avif');
+  background-color: #b2c7f5;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   position: relative;
   margin-bottom: -70px;
+  margin-top: 100px;
 }
 
 .section-bg-image .container + svg {
   transform: rotate(180deg);
   position: relative;
   bottom: -1px;
-}
-
-.section-bg-image-block {
-  backdrop-filter: blur(5px) saturate(180%);
-  -webkit-backdrop-filter: blur(5px) saturate(180%);
-  background-color: rgba(255, 255, 255, 0.75);
-  border-radius: var(--border-radius-medium);
-  border: 1px solid rgba(209, 213, 219, 0.3);
-  border-radius: var(--border-radius-medium);
-  padding: 50px;
 }
 
 .section-bg-image-block .input-group {
@@ -1192,6 +1183,264 @@ strong {
   color: var(--white-color);
 }
 
+/*---------------------------------------
+  Portfolio page               
+-----------------------------------------*/
+
+/* General styling for the section */
+.portfolio-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.portfolio-header h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 2.5rem;
+  font-weight: normal;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.portfolio-header p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+
+/* Grid layout for the 3 images */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Container for each image and text */
+.gallery-item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background-color: #f9f9f9;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* THE NEW LIGHT GREY FILTER */
+.gallery-item::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* Covers the entire box */
+  background-color: rgba(150, 150, 150, 0.4); /* Light grey with 40% opacity */
+  z-index: 1; /* Sits above the image */
+  transition: opacity 0.4s ease; /* Matches the fade out speed */
+}
+
+/* Image styling */
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  position: relative;
+  z-index: 0; /* Sits below the filter */
+}
+
+/* Text overlay styling */
+.hover-text {
+  position: absolute;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+  transition: opacity 0.4s ease;
+  z-index: 2; /* Sits above the filter so it's clearly readable */
+  pointer-events: none;
+}
+
+
+/* --- THE HOVER EFFECTS --- */
+
+/* 1. Make the image shrink */
+.gallery-item:hover img {
+  transform: scale(0.92); 
+}
+
+/* 2. Make the light grey filter disappear */
+.gallery-item:hover::before {
+  opacity: 0;
+}
+
+/* 3. Make the text disappear */
+.gallery-item:hover .hover-text {
+  opacity: 0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/*---------------------------------------
+  About ME              
+-----------------------------------------*/
+
+/* Container for the whole section */
+.about-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+/* Flexbox layout for the two columns */
+.about-container {
+  display: flex;
+  gap: 50px;
+  align-items: center; /* Vertically centers the left and right sides */
+}
+
+/* --- Left Side Styling (Gray Box) --- */
+.about-left {
+  flex: 1; /* Takes up 50% of the space */
+  background-color: #d3d3d3; /* Light gray background */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.about-left h2 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 2.2rem;
+  font-weight: normal;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+/* The little black line under 'About Me' */
+.title-line {
+  width: 50px;
+  border: 0;
+  border-top: 2px solid #1a1a1a;
+  margin: 0 auto 30px auto;
+}
+
+.about-left img {
+  width: 100%;
+  max-width: 450px; /* Prevents the image from getting too massive */
+  height: auto;
+  display: block;
+}
+
+/* --- Right Side Styling (Text) --- */
+.about-right {
+  flex: 1; /* Takes up the other 50% */
+}
+
+.about-right p {
+  /* Using a handwritten/cursive font fallback to match your image's style */
+  font-family: "Comic Sans MS", "Chalkboard SE", cursive, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+/* Mobile Responsiveness: Stacks the columns on small screens */
+@media (max-width: 850px) {
+  .about-container {
+    flex-direction: column;
+  }
+  
+  .about-left {
+    width: 100%;
+    padding: 30px 20px;
+  }
+}
+
+/*---------------------------------------
+  CV               
+-----------------------------------------*/
+
+/* Container setup */
+.cv-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Main Title */
+.cv-title {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 2.5rem;
+  font-weight: normal;
+  text-align: center;
+  color: #1a1a1a;
+  margin-bottom: 40px;
+}
+
+/* Category Wrapper */
+.cv-category {
+  margin-bottom: 60px;
+}
+
+/* The Ribbon Banner */
+.cv-banner {
+  background-color: #8f8bd6; /* The periwinkle purple color */
+  color: #ffffff;
+  font-size: 1.4rem;
+  padding: 15px 60px; /* Generous padding to clear the slanted cuts */
+  margin-bottom: 30px;
+  
+  /* This creates the ribbon shape! */
+  clip-path: polygon(
+    0% 0%, 
+    calc(100% - 30px) 0%, 
+    100% 50%, 
+    calc(100% - 30px) 100%, 
+    0% 100%, 
+    30px 50%
+  );
+}
+
+/* 3-Column Grid for the details */
+.cv-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 0 60px; /* Aligns the text perfectly with the text inside the banner */
+  margin-bottom: 30px;
+  color: #666; /* Light gray text */
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .cv-item {
+    grid-template-columns: 1fr; /* Stacks the date, role, and place vertically */
+    padding: 0 30px;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+  
+  .cv-banner {
+    font-size: 1.2rem;
+    padding: 12px 40px;
+    /* Adjusts the cut depths so they look proportional on smaller screens */
+    clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 50%, calc(100% - 20px) 100%, 0% 100%, 20px 50%);
+  }
+}
 
 /*---------------------------------------
   RESPONSIVE STYLES               

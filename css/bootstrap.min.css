@@ -1306,7 +1306,7 @@ progress {
   }
   .col-lg-6 {
     flex: 0 0 auto;
-    width: 50%;
+    width: 100%;
   }
   .col-lg-7 {
     flex: 0 0 auto;
@@ -9919,6 +9919,7 @@ fieldset:disabled .btn {
     margin-bottom: 1.5rem !important;
   }
   .mb-lg-5 {
+    margin-top: 3rem !important;
     margin-bottom: 3rem !important;
   }
   .mb-lg-auto {
