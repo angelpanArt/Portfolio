@@ -116,31 +116,74 @@ https://templatemo.com/tm-587-tiya-golf-club
             </path>
         </svg>
 
-        <section class="portfolio-section" id="section_2">
-            <div class="portfolio-header">
-                <h1>My Portfolio</h1>
-                <p>Welcome to my portfolio. Here you'll find a selection of my work.<br>
-                    Explore my projects to learn more about what I do.</p>
+
+        <section class="project-details-section" id="section_2">
+            <a href="Portfolio.html" class="back-link">
+                <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                Back to Portfolio
+            </a>
+            <div class="project-header">
+                <h1>Digital Painting</h1>
+
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <h3>Project type</h3>
+                        <p>2D Digital Painting</p>
+                    </div>
+
+                    <div class="meta-item">
+                        <h3>Date</h3>
+                        <p>Jan 2025</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="gallery-grid">
-                <a href="constraint.html" class="gallery-item">
-                    <img src="./images/Constraint/Constraint1.jpg" alt="Identity">
-                    <span class="hover-text">Constraint</span>
-                </a>
+            <section class="project-details-section">
+                <div class="project-gallery">
+                    <img src="./images/DP/DP1.jpg" alt="Artwork 1" class="gallery-img"
+                        data-title="Embodied Desire" data-meta="Acrylic on canvas<br>2025<br>25cm x 25cm x 3 pcs"
+                        data-desc="This series explores themes of intimacy, identity, and love within the LGBTQ community through abstract representations. Each piece serves as a fragmented symbol of human sexuality and desire.">
 
-                <a href="digital-painting.html" class="gallery-item">
-                    <img src="./images/DP/DP1.jpg" alt="Digital Painting">
-                    <span class="hover-text">Digital Painting</span>
-                </a>
+                    <img src="./images/DP/DP2.jpg" alt="Artwork 2" class="gallery-img" data-title="Second Artwork Title"
+                        data-meta="Digital Painting<br>2024" data-desc="Description for the second artwork goes here.">
+                </div>
+            </section>
 
-                <a href="sympathy.html" class="gallery-item">
-                    <img src="./images/PA/PA1.jpg" alt="Sympathy">
-                    <span class="hover-text">Sympathy</span>
-                </a>
+            <div id="galleryModal" class="modal">
+
+                <button class="modal-btn modal-close" aria-label="Close">&#10005;</button>
+
+                <button class="modal-btn modal-prev" aria-label="Previous">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="modal-btn modal-next" aria-label="Next">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+
+                <div class="modal-content">
+                    <div class="modal-image-container">
+                        <img id="modalImage" src="" alt="Fullscreen Artwork">
+                    </div>
+
+                    <div class="modal-text-container">
+                        <h2 id="modalTitle">Title</h2>
+                        <p id="modalMeta" class="modal-meta">Details</p>
+                        <p id="modalDesc" class="modal-desc">Description</p>
+                    </div>
+                </div>
             </div>
+
         </section>
-
+        </section>
 
         <footer>
             <section class="section-bg-image" id="section_3">
@@ -207,6 +250,59 @@ https://templatemo.com/tm-587-tiya-golf-club
     <script src="js/animated-headline.js"></script>
     <script src="js/modernizr.js"></script>
     <script src="js/custom.js"></script>
+
+    <script>
+        // Grab all the necessary elements
+        const galleryImages = document.querySelectorAll('.gallery-img');
+        const modal = document.getElementById('galleryModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMeta = document.getElementById('modalMeta');
+        const modalDesc = document.getElementById('modalDesc');
+
+        let currentIndex = 0;
+
+        // Function to load the content into the modal
+        function updateModalContent(index) {
+            const img = galleryImages[index];
+            modalImg.src = img.src;
+            modalTitle.innerText = img.getAttribute('data-title') || 'Artwork';
+            modalMeta.innerHTML = img.getAttribute('data-meta') || '';
+            modalDesc.innerText = img.getAttribute('data-desc') || '';
+        }
+
+        // Open modal when a gallery image is clicked
+        galleryImages.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                currentIndex = index;
+                updateModalContent(currentIndex);
+                modal.classList.add('show');
+            });
+        });
+
+        // Close Modal Button
+        document.querySelector('.modal-close').addEventListener('click', () => {
+            modal.classList.remove('show');
+            modal.classList.remove('fullscreen-mode'); // Reset fullscreen state
+        });
+
+        // Next Button
+        document.querySelector('.modal-next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            updateModalContent(currentIndex);
+        });
+
+        // Previous Button
+        document.querySelector('.modal-prev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateModalContent(currentIndex);
+        });
+
+        // Expand Button (Toggle Fullscreen Picture Mode)
+        document.querySelector('.modal-expand').addEventListener('click', () => {
+            modal.classList.toggle('fullscreen-mode');
+        });
+    </script>
 
 </body>
 
